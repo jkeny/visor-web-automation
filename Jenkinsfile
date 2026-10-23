@@ -6,7 +6,8 @@ pipeline {
     }
 
     parameters {
-        string(name: 'BROWSER', defaultValue: 'CHROME', description: 'Navegador de ejecución')
+        //string(name: 'BROWSER', defaultValue: 'CHROME', description: 'Navegador de ejecución')
+        choice(name: 'BROWSER', choices: ['CHROME', 'FIREFOX', 'EDGE'], description: 'Selecciona el navegador para la ejecución de las pruebas')
         string(name: 'TEST_SUITE', defaultValue: 'pe.visorweb.test.login.*Test', description: 'Patrón de pruebas a ejecutar')
     }
 
