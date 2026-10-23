@@ -8,7 +8,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-
 public class DriverFactory {
 	// Usamos ThreadLocal para correr tus pruebas en paralelo futuras
 	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
@@ -72,8 +71,11 @@ public class DriverFactory {
 		case EDGE -> {
 			EdgeOptions edgeOptions = new EdgeOptions();
 			edgeOptions.addArguments("--headless=new");
+			edgeOptions.addArguments("--no-sandbox");
+			edgeOptions.addArguments("--disable-dev-shm-usage");
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
+			edgeOptions.addArguments("--window-size=1920,1080");
 			// edgeOptions.addArguments("--window-size=1920,1080");
 			return new EdgeDriver(edgeOptions);
 
