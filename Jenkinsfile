@@ -2,29 +2,28 @@ pipeline {
     agent any
 
     tools {
-        // Enlaza el Maven 'M3' que configuramos en los pasos anteriores
         maven 'M3' 
     }
 
     parameters {
-        // Te permite cambiar el navegador y la ruta del test desde la interfaz de Jenkins
         string(name: 'BROWSER', defaultValue: 'CHROME', description: 'Navegador de ejecución')
         string(name: 'TEST_SUITE', defaultValue: 'pe.visorweb.test.login.*Test', description: 'Patrón de pruebas a ejecutar')
     }
 
     stages {
-        stage('Limpiar Entorno') {
+        stage('Limpiar y Descargar Código') {
             steps {
-                echo 'Limpiando el espacio de trabajo...'
-                cleanWs() 
+                // 1. Limpiamos primero el espacio de trabajo de ejecuciones viejas
+                cleanWs()
+                
+                // 2. Descargamos el código fresco de GitHub después de haber limpiado
+                checkout scm
             }
         }
 
         stage('Ejecutar Pruebas Automatizadas') {
             steps {
                 echo "Iniciando pruebas en el navegador: ${params.BROWSER}"
-                
-                // Usamos 'bat' porque tu servidor Jenkins se encuentra corriendo sobre Windows 11
                 bat "mvn clean test -Dtest=${params.TEST_SUITE} -Dbrowser=${params.BROWSER}"
             }
         }
@@ -33,8 +32,6 @@ pipeline {
     post {
         always {
             echo 'Generando y publicando Reporte de Allure...'
-            
-            // Invoca al plugin de Allure usando la herramienta 'allure-latest' que guardamos
             allure includeProperties: false, 
                    jdk: '', 
                    properties: [], 
