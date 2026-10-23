@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Errores de Tiempo de Espera (Selenium Waits)",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*TimeoutException.*|.*Expected condition failed.*"
+  },
+  {
+    "name": "Elementos No Encontrados (DOM Bugs / Localizadores)",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*NoSuchElementException.*|.*StaleElementReferenceException.*"
+  },
+  {
+	  "name": "Fallos Lógicos de Aserciones (Bugs Reales de la Web)",
+	  "matchedStatuses": ["failed"],
+	  "traceRegex": ".*AssertionError.*|.*org\\.junit.*|.*org\\.assertj.*|.*expected:.*"
+  },
+  {
+    "name": "Otras Fallas del Producto",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "Otras Fallas de la Automatización",
+    "matchedStatuses": ["broken"]
+  }
+]

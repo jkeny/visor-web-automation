@@ -1,0 +1,4 @@
+usuario,clave,producto,mensajeEsperado,mensajeSinProductoSeleccionado
+admin, clave,BATERIAS,Se eliminó de manera correcta el Producto,No ha seleccionado un Producto
+admin, clave,CHOCOLATES,Se eliminó de manera correcta el Producto,No ha seleccionado un Producto
+admin, clave,LENOVO THINKPAD,Se eliminó de manera correcta el Producto,No ha seleccionado un Producto

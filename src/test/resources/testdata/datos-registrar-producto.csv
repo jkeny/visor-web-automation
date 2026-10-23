@@ -1,0 +1,5 @@
+usuario,password,producto,categoria,precio,mensajeEsperado
+admin,clave,BATERIAS,ACCESORIOS,2.50,Se guardó de manera correcta el Producto
+admin,clave,"",ACCESORIOS,2.50,Nombre: Error de validación: se necesita un valor.
+admin,clave,BATERIAS,ACCESORIOS,2.50,Se guardó de manera correcta el Producto
+admin,clave,"",ACCESORIOS,2.50,Nombre: Error de validación: se necesita un valor.

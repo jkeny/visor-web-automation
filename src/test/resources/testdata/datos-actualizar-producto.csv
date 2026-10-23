@@ -1,0 +1,7 @@
+usuario,clave,productoBuscar,productoActualizar,categoria,precio,mensajeEsperado,mensajeSinProductoSeleccionado
+admin, clave,AUDIFONOS,NOKIA M45,CELULAR,1700.00,Se actualizó de manera correcta el Producto,No ha seleccionado un Producto
+admin, clave,BATERIAS,LENOVO THINKPAD,COMPUTADORA,6550.50,Se actualizó de manera correcta el Producto,No ha seleccionado un Producto
+admin, clave,LENOVO THINKPAD,"",COMPUTADORA,37.00,Nombre: Error de validación: se necesita un valor.,No ha seleccionado un Producto
+admin, clave,LENOVO THINKPAD,AUDIFONOS,ACCESORIOS,37.00,Se actualizó de manera correcta el Producto,No ha seleccionado un Producto
+admin, clave,AUDIFONOS,"",CELULAR,1700.00,Nombre: Error de validación: se necesita un valor.,No ha seleccionado un Producto
+admin, clave,NOKIA M45,"",COMPUTADORA,6550.50,Nombre: Error de validación: se necesita un valor.,No ha seleccionado un Producto
