@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
 
 public class DriverFactory {
 	// Usamos ThreadLocal para correr tus pruebas en paralelo futuras
@@ -16,20 +19,15 @@ public class DriverFactory {
 	}
 
 	public static void inicializarDriver(Navegador navegador) {
-		System.out.println("Iniciando el navegador: " + navegador);
 
-		switch (navegador) {
-		case CHROME -> {
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--remote-allow-origins=*");
-			tlDriver.set(new ChromeDriver(options));
+		if (navegador == null) {
+			throw new IllegalArgumentException("El navegador no puede ser nulo.");
 		}
-		case FIREFOX -> tlDriver.set(new FirefoxDriver());
-		case EDGE -> tlDriver.set(new EdgeDriver());
-		case null -> throw new IllegalArgumentException("El navegador no puede ser nulo.");
-		}
-		
-		 tlNombreNavegador.set(navegador.name());
+		System.out.println("Iniciando el navegador: " + navegador);
+		WebDriver driver = browserDriverOptions(navegador);
+
+		tlDriver.set(driver);
+		tlNombreNavegador.set(navegador.name());
 
 		obtenerDriver().manage().window().maximize();
 	}
@@ -37,18 +35,53 @@ public class DriverFactory {
 	public static synchronized WebDriver obtenerDriver() {
 		return tlDriver.get();
 	}
-	
-    public static synchronized String obtenerNombreNavegadorActual() {
-        String nombreNavegador = tlNombreNavegador.get();
-        return (nombreNavegador != null) ? nombreNavegador : "CHROME";
-    }
+
+	public static synchronized String obtenerNombreNavegadorActual() {
+		String nombreNavegador = tlNombreNavegador.get();
+		return (nombreNavegador != null) ? nombreNavegador : "CHROME";
+	}
 
 	public static void cerrarDriver() {
 		if (obtenerDriver() != null) {
 			obtenerDriver().quit();
 			tlDriver.remove(); // Limpia el hilo de ejecución
 		}
-		
+
 		tlNombreNavegador.remove(); // 🟢 Limpia el hilo del texto
 	}
+
+	private static WebDriver browserDriverOptions(Navegador navegador) {
+
+		switch (navegador) {
+		case CHROME -> {
+			ChromeOptions chromeOptions = new ChromeOptions();
+
+			chromeOptions.addArguments("--remote-allow-origins=*");
+
+			return new ChromeDriver(chromeOptions);
+
+		}
+		case FIREFOX -> {
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--headless=new");
+			firefoxOptions.addArguments("--remote-allow-origins=*");
+			firefoxOptions.addArguments("--disable-gpu");
+			// firefoxOptions.addArguments("--window-size=1920,1080");
+			return new FirefoxDriver(firefoxOptions);
+		}
+		case EDGE -> {
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("--headless=new");
+			edgeOptions.addArguments("--remote-allow-origins=*");
+			edgeOptions.addArguments("--disable-gpu");
+			// edgeOptions.addArguments("--window-size=1920,1080");
+			return new EdgeDriver(edgeOptions);
+
+		}
+		case null -> throw new IllegalArgumentException("El navegador no puede ser Nulo: " + navegador);
+
+		}
+
+	}
+
 }
