@@ -28,7 +28,7 @@ public class DriverFactory {
 		tlDriver.set(driver);
 		tlNombreNavegador.set(navegador.name());
 
-		obtenerDriver().manage().window().maximize();
+		//obtenerDriver().manage().window().maximize();
 	}
 
 	public static synchronized WebDriver obtenerDriver() {
@@ -71,13 +71,13 @@ public class DriverFactory {
 		case EDGE -> {
 			EdgeOptions edgeOptions = new EdgeOptions();
 			edgeOptions.addArguments("--headless");
-			//edgeOptions.addArguments("--headless");
 			edgeOptions.addArguments("--no-sandbox");
 			edgeOptions.addArguments("--disable-dev-shm-usage");
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
 			edgeOptions.addArguments("--window-size=1920,1080");
 			edgeOptions.addArguments("--remote-debugging-port=0");
+			edgeOptions.addArguments("--remote-debugging-pipe");
 
 			return new EdgeDriver(edgeOptions);
 
