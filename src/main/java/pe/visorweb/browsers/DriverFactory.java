@@ -72,7 +72,7 @@ public class DriverFactory {
 			EdgeOptions edgeOptions = new EdgeOptions();
 			edgeOptions.addArguments("--headless=new");
 			//edgeOptions.addArguments("--headless");
-			edgeOptions.addArguments("--no-sandbox");
+			//edgeOptions.addArguments("--no-sandbox");
 			edgeOptions.addArguments("--disable-dev-shm-usage");
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
