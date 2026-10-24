@@ -70,21 +70,15 @@ public class DriverFactory {
 		}
 		case EDGE -> {
 			EdgeOptions edgeOptions = new EdgeOptions();
-			//edgeOptions.addArguments("--headless=new");
-			edgeOptions.addArguments("--headless");
-			//edgeOptions.addArguments("--no-sandbox");
-			//edgeOptions.addArguments("--disable-dev-shm-usage");
-			//edgeOptions.addArguments("--remote-allow-origins=*");
+			edgeOptions.addArguments("--headless=new");
+			//edgeOptions.addArguments("--headless");
+			edgeOptions.addArguments("--no-sandbox");
+			edgeOptions.addArguments("--disable-dev-shm-usage");
+			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
-			edgeOptions.addArguments("--window-size=1920,1080");
+			//edgeOptions.addArguments("--window-size=1920,1080");
 			edgeOptions.addArguments("--remote-debugging-port=0");
 
-			edgeOptions.addArguments(
-			    "--user-data-dir=" +
-			    System.getProperty("java.io.tmpdir") +
-			    "\\edge-" +
-			    Thread.currentThread().threadId()
-			);
 			return new EdgeDriver(edgeOptions);
 
 		}
