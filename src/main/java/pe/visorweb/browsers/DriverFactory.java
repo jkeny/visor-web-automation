@@ -70,14 +70,19 @@ public class DriverFactory {
 		}
 		case EDGE -> {
 			EdgeOptions edgeOptions = new EdgeOptions();
-			edgeOptions.addArguments("--headless");
+			// 🚀 Evita el crash de DevToolsActivePort aislando el perfil de datos en el espacio temporal
+			edgeOptions.addArguments("--user-data-dir=" + System.getProperty("user.dir") + "\\target\\edge-profile");
 			edgeOptions.addArguments("--no-sandbox");
 			edgeOptions.addArguments("--disable-dev-shm-usage");
+			
+			// 🚀 Forzar puerto estático de depuración para evadir el bloqueo del puerto cero de Jenkins
+			edgeOptions.addArguments("--remote-debugging-port=9222"); 
+			
+			// Argumentos obligatorios de infraestructura Headless
+			edgeOptions.addArguments("--headless=new");
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
 			edgeOptions.addArguments("--window-size=1920,1080");
-			edgeOptions.addArguments("--remote-debugging-port=9222");
-			edgeOptions.addArguments("--remote-debugging-pipe");
 
 			return new EdgeDriver(edgeOptions);
 
