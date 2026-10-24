@@ -76,7 +76,7 @@ public class DriverFactory {
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
 			edgeOptions.addArguments("--window-size=1920,1080");
-			edgeOptions.addArguments("--remote-debugging-port=0");
+			edgeOptions.addArguments("--remote-debugging-port=9222");
 			edgeOptions.addArguments("--remote-debugging-pipe");
 
 			return new EdgeDriver(edgeOptions);
