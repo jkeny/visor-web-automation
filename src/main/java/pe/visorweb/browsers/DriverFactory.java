@@ -73,7 +73,7 @@ public class DriverFactory {
 			edgeOptions.addArguments("--headless=new");
 			//edgeOptions.addArguments("--headless");
 			//edgeOptions.addArguments("--no-sandbox");
-			edgeOptions.addArguments("--disable-dev-shm-usage");
+			//edgeOptions.addArguments("--disable-dev-shm-usage");
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			edgeOptions.addArguments("--disable-gpu");
 			//edgeOptions.addArguments("--window-size=1920,1080");
